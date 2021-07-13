@@ -9,16 +9,18 @@ namespace UserRegisteration
     {
         public static string firstname;
         public static string lastname;
+        public static string emails;
+
         public static void GetUserInformation()
         {
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
-
-            //Get Last Name from user
+            Regex email = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
+            //Get First Name from user
             Console.WriteLine("\nEnter First Name starting with Caps(minimum 3 characters)");
             while (true)
             {
-                firstname=Console.ReadLine();
-                if(regex.IsMatch(firstname))
+                firstname = Console.ReadLine();
+                if (regex.IsMatch(firstname))
                 {
                     break;
                 }
@@ -39,11 +41,28 @@ namespace UserRegisteration
                 }
                 else
                 {
-                    Console.WriteLine("Please enter a Valid Name Name!");
+                    Console.WriteLine("Please enter a Valid Last Name!");
+                }
+            }
+            //Get Last Name from user
+            Console.WriteLine("\nEnter Email Address");
+            while (true)
+            {
+                emails = Console.ReadLine();
+                if (email.IsMatch(emails))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a Valid Email!");
                 }
             }
             Console.WriteLine("Your First name is: {0}", firstname);
             Console.WriteLine("Your Last name is: {0}", lastname);
+            Console.WriteLine("Your Email is: {0}", emails);
+
+
 
         }
     }
