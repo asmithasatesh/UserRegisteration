@@ -11,7 +11,7 @@ namespace UserRegisteration
         public static string lastname;
         public static string emails;
         public static string phoneNumber;
-        public static string Password;
+        private static string Password;
 
 
 
@@ -20,9 +20,6 @@ namespace UserRegisteration
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
             Regex email = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
             Regex phone = new Regex(@"^[0-9]+\s[0-9]{10}$");
-            Regex passWord = new Regex(@"^(?=.*[0-9])(?=.*[\!\@\#\$\%\^\&\*\(\)\+\-\[\]\;\:\/\,\.]{1})(?=.*[A-Za])[a-zA-Z0-9 \!\@\#\$\%\^\&\*\(\)\+\-\[\]\;\:\/\,\.].{7,}$");
-
-
 
             //Get First Name from user
             Console.WriteLine("\nEnter First Name starting with Caps(minimum 3 characters)");
@@ -81,22 +78,9 @@ namespace UserRegisteration
                     Console.WriteLine("Please enter a Valid Phone Number!");
                 }
             }
-            //Get PassWord from user
-            Console.WriteLine("\nEnter Password (minimum 8 characters)");
-            while (true)
-            {
-                 Password= Console.ReadLine();
-                if (passWord.IsMatch(Password))
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Please enter a Valid Password (minimum 8 characters)!");
-                }
-            }
 
 
+            GetPassword();
             Display();
         }
 
@@ -109,6 +93,25 @@ namespace UserRegisteration
             Console.WriteLine("Your Phone number is: {0}", phoneNumber);
             Console.WriteLine("Your password is: {0}", Password);
 
+        }
+        public static void GetPassword()
+        {
+            //Get PassWord from user
+            string pattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8}$";
+            Regex passWord = new Regex(pattern);
+            Console.WriteLine("\nEnter Password (minimum 8 characters)");
+            while (true)
+            {
+                Password = Console.ReadLine();
+                if (passWord.IsMatch(Password))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a Valid Password (minimum 8 characters)!");
+                }
+            }
         }
     }
 }
