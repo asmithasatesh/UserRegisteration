@@ -20,8 +20,8 @@ namespace UserRegisteration
             Regex regex = new Regex(@"^[A-Z][a-z]{2,}$");
             Regex email = new Regex(@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
             Regex phone = new Regex(@"^[0-9]+\s[0-9]{10}$");
-            //Regex passWord = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$");
-            Regex passWord = new Regex(@"^(?=.*[0-9])(?=.*[A-Z]).{8,}$");
+            Regex passWord = new Regex(@"^(?=.*[0-9])(?=.*[\!\@\#\$\%\^\&\*\(\)\+\-\[\]\;\:\/\,\.]{1})(?=.*[A-Za])[a-zA-Z0-9 \!\@\#\$\%\^\&\*\(\)\+\-\[\]\;\:\/\,\.].{7,}$");
+
 
 
             //Get First Name from user
