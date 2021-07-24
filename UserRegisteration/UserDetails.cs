@@ -21,7 +21,7 @@ namespace UserRegisteration
 
         public static void GetUserInformation()
         {
-
+            //Get input from user
             Console.WriteLine("\nEnter First Name starting with Caps(minimum 3 characters)");
             firstname = Console.ReadLine();
             GetFirstName(firstname);
@@ -58,31 +58,31 @@ namespace UserRegisteration
         }
 
         //Get First Name from user
-        public static string GetFirstName(string firstname)
-        {
-            try
-            {
-                if(firstname.Equals(""))
-                {
-                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid First Name!");
-                }
-                if (regex.IsMatch(firstname))
-                {
-                    return firstname;
-                }
-                else
-                {
-                    throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid First Name!");
-                }
-            }
-            catch(NullReferenceException ex)
-            {
-                return ex.Message;
-            }
+        public static Func<string, string> GetFirstName = (firstname) =>
+         {
+             try
+             {
+                 if (firstname.Equals(""))
+                 {
+                     throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid First Name!");
+                 }
+                 if (regex.IsMatch(firstname))
+                 {
+                     return firstname;
+                 }
+                 else
+                 {
+                     throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid First Name!");
+                 }
+             }
+             catch (NullReferenceException ex)
+             {
+                 return ex.Message;
+             }
 
-        }
+         };
         //Get Last Name from user
-        public static string GetLastName(string lastname)
+        public static Func<string, string> GetLastName = (lastname) =>
         {
             try
             {
@@ -103,34 +103,34 @@ namespace UserRegisteration
             {
                 return ex.Message;
             }
-        }
+        };
 
         //Get Email from user
-        public static string GetEmail(string emails)
-        {
-            try
-            {
-                if (emails.Equals(""))
-                {
-                    throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid Email!");
-                }
-                if (email.IsMatch(emails))
-                {
-                    return emails;
-                }
-                else
-                {
-                    throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid Email!");
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                return ex.Message;
-            }
+        public static Func<string, string> GetEmail = (emails) =>
+          {
+              try
+              {
+                  if (emails.Equals(""))
+                  {
+                      throw new CustomisedException(CustomisedException.ExceptionType.EMPTY_MESSAGE, "Please enter a Valid Email!");
+                  }
+                  if (email.IsMatch(emails))
+                  {
+                      return emails;
+                  }
+                  else
+                  {
+                      throw new CustomisedException(CustomisedException.ExceptionType.INVALID_MESSAGE, "Please enter a Valid Email!");
+                  }
+              }
+              catch (NullReferenceException ex)
+              {
+                  return ex.Message;
+              }
 
-        }
+          };
         //Get Phone Number from user
-        public static string GetPhoneNumber(string phoneNumber)
+        public static Func<string,string> GetPhoneNumber = (phoneNumber) =>
         {
             try
             {
@@ -154,9 +154,9 @@ namespace UserRegisteration
             }
 
 
-        }
+        };
         //Get PassWord from user
-        public static string GetPassword(string Password)
+        public static Func<string, string> GetPassword = (Password) =>
         {
             string pattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
             Regex passWord = new Regex(pattern);
@@ -180,6 +180,6 @@ namespace UserRegisteration
                 return ex.Message;
             }
 
-        }
+        };
     }
 }
